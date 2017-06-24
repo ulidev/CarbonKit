@@ -448,11 +448,11 @@
         }
     }
 
-    BOOL isToolbarChildView = [self.view.subviews containsObject:self.toolbar];
+    BOOL isToolbarChildView = [self.view.subviews containsObject:self.carbonTabSwipeScrollView];
     [self.pageViewController willMoveToParentViewController:self];
     [self addChildViewController:self.pageViewController];
     if (isToolbarChildView) {
-        [self.view insertSubview:self.pageViewController.view belowSubview:self.toolbar];
+        [self.view insertSubview:self.pageViewController.view belowSubview:self.carbonTabSwipeScrollView];
     } else {
         [self.view addSubview:self.pageViewController.view];
     }
@@ -464,7 +464,7 @@
     // Views dictionary
     NSDictionary *views = @{
         @"pageViewController" : self.pageViewController.view,
-        @"segmentedToolbar" : self.toolbar
+        @"segmentedToolbar" : self.carbonTabSwipeScrollView
     };
 
     // Create constraints using visual format
@@ -505,13 +505,13 @@
 
 - (void)addToolbarIntoSuperview {
     // add views
-    [self.view addSubview:self.toolbar];
-
+//    [self.view addSubview:self.toolbar];
+    
     // Setup constraints
-    self.toolbar.translatesAutoresizingMaskIntoConstraints = NO;
+    self.carbonTabSwipeScrollView.translatesAutoresizingMaskIntoConstraints = NO;
 
     // Views dictionary
-    NSDictionary *views = NSDictionaryOfVariableBindings(_toolbar);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_carbonTabSwipeScrollView);
 
     // Create constraints using visual format
 
@@ -520,10 +520,10 @@
         position = [self.delegate barPositionForCarbonTabSwipeNavigation:self];
     }
 
-    NSString *verticalFormat = @"V:[_toolbar]|";
+    NSString *verticalFormat = @"V:[_carbonTabSwipeScrollView]|";
 
     if (position == UIBarPositionTop || position == UIBarPositionTopAttached) {
-        verticalFormat = @"V:|[_toolbar]";
+        verticalFormat = @"V:|[_carbonTabSwipeScrollView]";
     }
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalFormat
@@ -531,12 +531,12 @@
                                                                       metrics:nil
                                                                         views:views]];
 
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_toolbar]|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_carbonTabSwipeScrollView]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
 
-    self.toolbarHeight = [NSLayoutConstraint constraintWithItem:self.toolbar
+    self.toolbarHeight = [NSLayoutConstraint constraintWithItem:self.carbonTabSwipeScrollView
                                                       attribute:NSLayoutAttributeHeight
                                                       relatedBy:NSLayoutRelationEqual
                                                          toItem:nil
@@ -551,12 +551,13 @@
     NSAssert(self.toolbar, @"Toolbar is not created!");
 
     self.carbonTabSwipeScrollView = [[CarbonTabSwipeScrollView alloc] initWithItems:items];
-    [self.toolbar addSubview:self.carbonTabSwipeScrollView];
+    self.carbonSegmentedControl.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 50);
+    [self.view addSubview:self.carbonTabSwipeScrollView];
 
     [self.carbonTabSwipeScrollView.carbonSegmentedControl addTarget:self
                                                              action:@selector(segmentedTapped:)
                                                    forControlEvents:UIControlEventValueChanged];
-
+    return;
     UIBarPosition position = UIBarPositionTop;
     if ([self.delegate respondsToSelector:@selector(barPositionForCarbonTabSwipeNavigation:)]) {
         position = [self.delegate barPositionForCarbonTabSwipeNavigation:self];

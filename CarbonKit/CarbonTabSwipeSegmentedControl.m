@@ -81,6 +81,7 @@
         [self addTarget:self
                       action:@selector(segmentedTapped:)
             forControlEvents:UIControlEventValueChanged];
+        
     }
     return self;
 }

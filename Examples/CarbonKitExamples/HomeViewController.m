@@ -18,20 +18,19 @@
     self.title = @"CarbonKit";
 
     items = @[
-        [UIImage imageNamed:@"home"],
-        [UIImage imageNamed:@"hourglass"],
-        [UIImage imageNamed:@"premium_badge"],
         @"Categories",
         @"Top Free",
         @"Top New Free",
-        @"Top Paid",
-        @"Top New Paid"
     ];
 
     carbonTabSwipeNavigation = [[CarbonTabSwipeNavigation alloc] initWithItems:items delegate:self];
     [carbonTabSwipeNavigation insertIntoRootViewController:self];
 
     [self style];
+//	CarbonTabSwipeScrollView *segment = [[CarbonTabSwipeScrollView alloc] initWithItems:items];
+////	    CarbonTabSwipeSegmentedControl *segment = [[CarbonTabSwipeSegmentedControl alloc] initWithItems:items];
+//	    segment.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 50);
+//	    [self.view addSubview:segment];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +46,7 @@
     self.navigationController.navigationBar.barTintColor = color;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 
-    carbonTabSwipeNavigation.toolbar.translucent = NO;
+//    carbonTabSwipeNavigation.toolbar.translucent = NO;
     [carbonTabSwipeNavigation setIndicatorColor:color];
     [carbonTabSwipeNavigation setTabExtraWidth:30];
     [carbonTabSwipeNavigation.carbonSegmentedControl setWidth:80 forSegmentAtIndex:0];
