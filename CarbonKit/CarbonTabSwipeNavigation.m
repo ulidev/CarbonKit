@@ -726,6 +726,6 @@
 }
 
 - (void)setSegmentsWidth:(CGFloat)width {
-//    self.carbonSegmentedControl
+    [self.carbonSegmentedControl setSegmentsWidths:width];
 }
 @end
