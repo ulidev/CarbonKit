@@ -93,6 +93,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (CGFloat)getWidth;
 
+/**
+ *  Set width to all segments
+ *
+ *  @param width width value
+ */
+- (void)setSegmentsWidths:(CGFloat)width;
+
 NS_ASSUME_NONNULL_END
 
 @end

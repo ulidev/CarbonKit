@@ -228,12 +228,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setTabExtraWidth:(CGFloat)extraWidth;
 
 /**
+ *  Set width to all segments
+ *
+ *  @param width width value
+ */
+- (void)setSegmentsWidth:(CGFloat)width;
+
+/**
  *  Change selected tab index
  *
  *  @param currentTabIndex Desired index to move
  *  @param animate Change the tab with animation
  */
 - (void)setCurrentTabIndex:(NSUInteger)currentTabIndex withAnimation:(BOOL)animate;
+
+
 
 NS_ASSUME_NONNULL_END
 

@@ -168,6 +168,12 @@
     }
 }
 
+- (void)setSegmentsWidths:(CGFloat)width {
+    for (int i = 0; i < self.segments.count; i++) {
+        [self setWidth:width forSegmentAtIndex:i];
+    }
+}
+
 #pragma mark - Properties
 
 - (NSArray<UIView *> *)segments {

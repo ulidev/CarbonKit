@@ -725,4 +725,7 @@
     self.carbonSegmentedControl.tabExtraWidth = extraWidth;
 }
 
+- (void)setSegmentsWidth:(CGFloat)width {
+//    self.carbonSegmentedControl
+}
 @end
